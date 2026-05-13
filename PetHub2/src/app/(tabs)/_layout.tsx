@@ -1,57 +1,73 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
-
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+import { MaterialIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { Text, TouchableOpacity } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        tabBarActiveTintColor: "#02C39A",
+        tabBarStyle: {
+          backgroundColor: "#f4f7f5",
+          borderTopWidth: 1,
+          borderTopColor: "rgba(0,0,0,0.05)",
+          height: 80,
+          paddingBottom: 20,
+        },
+        headerTitle: () => (
+          <Text className="text-2xl font-black tracking-tighter text-on-surface uppercase font-headline">
+            PetHub
+          </Text>
+        ),
+        headerStyle: {
+          backgroundColor: "#f4f7f5",
+        },
+        headerShadowVisible: false,
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="dashboard"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Dashboard",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="dashboard" size={28} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="pets"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Pets",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="pets" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="calendario"
+        options={{
+          title: "Calendário",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="calendar-today" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="consultas"
+        options={{
+          title: "Consultas",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="medical-services" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="perfil"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="person-outline" size={28} color={color} />
+          ),
         }}
       />
     </Tabs>
