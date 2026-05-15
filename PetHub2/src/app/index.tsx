@@ -20,7 +20,7 @@ const OnboardScreen = () => {
         router.replace("/dashboard");
       }
 
-      setLoading(false);
+      setLoading(false);  
     }
 
     loadOnboard();
