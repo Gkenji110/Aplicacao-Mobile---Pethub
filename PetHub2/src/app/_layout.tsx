@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
 import "../global.css";
+import { PetProvider } from "@/context/PetContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,12 +35,12 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <PetProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="dark" />
-    </>
+    </PetProvider>
   );
 }
