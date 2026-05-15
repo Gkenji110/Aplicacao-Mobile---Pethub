@@ -12,6 +12,7 @@ import "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
 import "../global.css";
 import { PetProvider } from "@/context/PetContext";
+import { LembreteProvider } from "@/context/LembreteContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -36,11 +37,13 @@ export default function RootLayout() {
 
   return (
     <PetProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="dark" />
+      <LembreteProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style="dark" />
+      </LembreteProvider>
     </PetProvider>
   );
 }
